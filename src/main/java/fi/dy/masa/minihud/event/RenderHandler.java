@@ -418,19 +418,31 @@ public class RenderHandler implements IRenderer
                     else if (mspt <= 50) { preMspt = GuiBase.TXT_GOLD; }
                     else                 { preMspt = GuiBase.TXT_RED; }
 
-                    this.addLine(String.format("Server TPS: %s%.1f%s MSPT: %s%.1f%s", preTps, tps, rst, preMspt, mspt, rst));
+                    try {
+                        this.addLine(String.format(Configs.Generic.SERVER_TPS_ACTUAL_FORMAT_STRING.getStringValue(), preTps, tps, rst, preMspt, mspt, rst));
+                    }
+                    catch (Exception e)
+                    {
+                        this.addLine("broken tps format string!");
+                    }
                 }
                 else
                 {
                     if (mspt <= 51) { preMspt = GuiBase.TXT_GREEN; }
                     else            { preMspt = GuiBase.TXT_RED; }
 
-                    this.addLine(String.format("Server TPS: %s%.1f%s (MSPT [est]: %s%.1f%s)", preTps, tps, rst, preMspt, mspt, rst));
+                    try {
+                    this.addLine(String.format(Configs.Generic.SERVER_TPS_EST_FORMAT_STRING.getStringValue(), preTps, tps, rst, preMspt, mspt, rst));
+                    }
+                    catch (Exception e)
+                    {
+                        this.addLine("broken tps format string!");
+                    }
                 }
             }
             else
             {
-                this.addLine("Server TPS: <no valid data>");
+                this.addLine("<no valid tps data>");
             }
         }
         else if (type == InfoToggle.MOB_CAPS)
@@ -453,7 +465,13 @@ public class RenderHandler implements IRenderer
 
             if (info != null)
             {
-                this.addLine("Ping: " + info.getLatency() + " ms");
+                try {
+                    this.addLine(String.format(Configs.Generic.PING_FORMAT_STRING.getStringValue(), info.getLatency()));
+                }
+                catch (Exception e)
+                {
+                    this.addLine("broken ping format string!");
+                }
             }
         }
         else if (type == InfoToggle.COORDINATES ||

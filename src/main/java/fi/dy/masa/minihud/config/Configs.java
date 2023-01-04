@@ -81,8 +81,11 @@ public class Configs implements IConfigHandler
         public static final ConfigInteger       MAP_PREVIEW_SIZE                    = new ConfigInteger("mapPreviewSize", 160, 16, 512, "The size of the rendered map previews");
         public static final ConfigBoolean       OFFSET_SUBTITLE_HUD                 = new ConfigBoolean("offsetSubtitleHud", true, "If the Info Lines HUD is set to the bottom right corner,\nand subtitles are enabled, then the subtitles will\nbe offset to appear above the Info Lines text.");
         public static final ConfigHotkey        OPEN_CONFIG_GUI                     = new ConfigHotkey("openConfigGui", "H,C", "A hotkey to open the in-game Config GUI");
+        public static final ConfigString        PING_FORMAT_STRING                  = new ConfigString("pingFormatString", "Ping: %d ms", "The format string for the ping display\nNeeds to have one %d format string!");
         public static final ConfigBoolean       REQUIRE_SNEAK                       = new ConfigBoolean("requireSneak", false, "Require the player to be sneaking to render the info line HUD");
         public static final ConfigHotkey        REQUIRED_KEY                        = new ConfigHotkey("requiredKey", "", KeybindSettings.MODIFIER_INGAME_EMPTY, "Require holding this key to render the HUD");
+        public static final ConfigString        SERVER_TPS_ACTUAL_FORMAT_STRING     = new ConfigString("serverTpsActualFormatString", "Server TPS: %s%.1f%s MSPT: %s%.1f%s", "The format string for the carpet/integrated server");
+        public static final ConfigString        SERVER_TPS_EST_FORMAT_STRING        = new ConfigString("serverTpsEstFormatString", "Server TPS: %s%.1f%s (MSPT [est]: %s%.1f%s)", "The format string for the estimated server TPS");
         public static final ConfigHotkey        SET_DISTANCE_REFERENCE_POINT        = new ConfigHotkey("setDistanceReferencePoint", "", "A hotkey to store the player's current position\nas the reference point for the distance info line type");
         public static final ConfigHotkey        SHAPE_EDITOR                        = new ConfigHotkey("shapeEditor", "", "Opens the Shape Editor GUI for the selected shape");
         public static final ConfigBoolean       SHULKER_BOX_PREVIEW                 = new ConfigBoolean("shulkerBoxPreview", false, "Enables rendering a preview of the Shulker Box contents,\nwhen you hold shift while hovering over a Shulker Box item");
@@ -162,6 +165,9 @@ public class Configs implements IConfigHandler
                 LIGHT_LEVEL_THRESHOLD_SAFE,
                 LIGHT_LEVEL_RENDER_OFFSET,
                 MAP_PREVIEW_SIZE,
+                PING_FORMAT_STRING,
+                SERVER_TPS_ACTUAL_FORMAT_STRING,
+                SERVER_TPS_EST_FORMAT_STRING,
                 SLIME_CHUNK_OVERLAY_RADIUS,
                 SPAWNABLE_COLUMNS_OVERLAY_RADIUS,
                 SPEED_AXIS_FORMAT_STRING,
