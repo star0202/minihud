@@ -96,6 +96,7 @@ public class Configs implements IConfigHandler
         public static final ConfigBoolean       SORT_LINES_REVERSED                 = new ConfigBoolean("sortLinesReversed", false, "Reverse the line sorting order");
         public static final ConfigInteger       SPAWNABLE_COLUMNS_OVERLAY_RADIUS    = new ConfigInteger("spawnableColumnHeightsOverlayRadius", 40, 0, 128, "The radius (in blocks) to render the spawnable\ncolumn heights overlay in. Valid range: 0 - 128");
         public static final ConfigString        SPEED_AXIS_FORMAT_STRING            = new ConfigString("speedAxisFormat", "speed: x: %.3f y: %.3f z: %.3f m/s", "The format string for the speed axis\nNeeds to have three %f format strings!");
+        public static final ConfigString        SPEED_HV_FORMAT_STRING              = new ConfigString("speedHvFormat", "speed: xz: %.3f y: %.3f m/s", "The format string for the speed hv\nNeeds to have two %f format strings!");
         public static final ConfigBoolean       STRUCTURES_RENDER_THROUGH           = new ConfigBoolean("structuresRenderThrough", false, "If enabled, then the Structure Bounding Boxes\nwill be rendered through blocks");
         public static final ConfigInteger       TEXT_POS_X                          = new ConfigInteger("textPosX", 4, 0, 8192, "Text X position from the screen edge (default: 4)");
         public static final ConfigInteger       TEXT_POS_Y                          = new ConfigInteger("textPosY", 4, 0, 8192, "Text Y position from the screen edge (default: 4)");
@@ -171,6 +172,7 @@ public class Configs implements IConfigHandler
                 SLIME_CHUNK_OVERLAY_RADIUS,
                 SPAWNABLE_COLUMNS_OVERLAY_RADIUS,
                 SPEED_AXIS_FORMAT_STRING,
+                SPEED_HV_FORMAT_STRING,
                 TEXT_POS_X,
                 TEXT_POS_Y,
                 TIME_DAY_DIVISOR,

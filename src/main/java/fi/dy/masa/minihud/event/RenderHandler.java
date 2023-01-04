@@ -760,10 +760,16 @@ public class RenderHandler implements IRenderer
         }
         else if (type == InfoToggle.SPEED_HV)
         {
-            double dx = entity.getX() - entity.lastRenderX;
-            double dy = entity.getY() - entity.lastRenderY;
-            double dz = entity.getZ() - entity.lastRenderZ;
-            this.addLine(String.format("speed: xz: %.3f y: %.3f m/s", Math.sqrt(dx * dx + dz * dz) * 20, dy * 20));
+            try {
+                double dx = entity.getX() - entity.lastRenderX;
+                double dy = entity.getY() - entity.lastRenderY;
+                double dz = entity.getZ() - entity.lastRenderZ;
+                this.addLine(String.format(Configs.Generic.SPEED_HV_FORMAT_STRING.getStringValue(), Math.sqrt(dx * dx + dz * dz) * 20, dy * 20));
+            }
+            catch (Exception e)
+            {
+                this.addLine("broken speed format string!");
+            }
         }
         else if (type == InfoToggle.SPEED_AXIS)
         {
