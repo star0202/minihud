@@ -486,9 +486,7 @@ public class RenderHandler implements IRenderer
                 return;
             }
 
-            String pre = "";
             StringBuilder str = new StringBuilder(128);
-            String fmtStr = Configs.Generic.COORDINATE_FORMAT_STRING.getStringValue();
             double x = entity.getX();
             double z = entity.getZ();
 
@@ -498,7 +496,7 @@ public class RenderHandler implements IRenderer
                 {
                     try
                     {
-                        str.append(String.format(fmtStr, x, y, z));
+                        str.append(String.format(Configs.Generic.COORDINATE_FORMAT_STRING.getStringValue(), x, y, z));
                     }
                     // Uh oh, someone done goofed their format string... :P
                     catch (Exception e)
@@ -510,19 +508,16 @@ public class RenderHandler implements IRenderer
                 {
                     str.append(String.format("XYZ: %.2f / %.4f / %.2f", x, y, z));
                 }
-
-                pre = " / ";
             }
 
-            if (InfoToggle.COORDINATES_SCALED.getBooleanValue() &&
-                (world.getRegistryKey() == World.NETHER || world.getRegistryKey() == World.OVERWORLD))
+            if (InfoToggle.COORDINATES_SCALED.getBooleanValue() && world.getRegistryKey() != World.END)
             {
                 boolean isNether = world.getRegistryKey() == World.NETHER;
                 double scale = isNether ? 8.0 : 1.0 / 8.0;
                 x *= scale;
                 z *= scale;
 
-                str.append(pre);
+                str.append(" / ");
 
                 if (isNether)
                 {
@@ -537,7 +532,7 @@ public class RenderHandler implements IRenderer
                 {
                     try
                     {
-                        str.append(String.format(fmtStr, x, y, z));
+                        str.append(String.format(Configs.Generic.COORDINATE_FORMAT_STRING.getStringValue(), x, y, z));
                     }
                     // Uh oh, someone done goofed their format string... :P
                     catch (Exception e)
@@ -549,14 +544,12 @@ public class RenderHandler implements IRenderer
                 {
                     str.append(String.format("XYZ: %.2f / %.4f / %.2f", x, y, z));
                 }
-
-                pre = " / ";
             }
 
             if (InfoToggle.DIMENSION.getBooleanValue())
             {
                 String dimName = world.getRegistryKey().getValue().toString();
-                str.append(pre).append("dim: ").append(dimName);
+                str.append(" / dim: ").append(dimName);
             }
 
             this.addLine(str.toString());
