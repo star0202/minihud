@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import javax.annotation.Nullable;
-import org.joml.Matrix4f;
 import net.minecraft.block.BeehiveBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
@@ -26,8 +25,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.item.FilledMapItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.server.world.ServerChunkManager;
 import net.minecraft.server.world.ServerWorld;
@@ -39,7 +36,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.LightType;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
@@ -318,12 +317,12 @@ public class RenderHandler implements IRenderer
             {
                 String str = Configs.Generic.DATE_FORMAT_REAL.getStringValue();
                 LocalDateTime now = LocalDateTime.now();
-                str = str.replace("{YEAR}",  String.format("%d", now.getYear()));
-                str = str.replace("{MONTH}",  String.format("%02d", now.getMonthValue()));
-                str = str.replace("{DAY}",  String.format("%02d", now.getDayOfMonth()));
-                str = str.replace("{HOUR}",  String.format("%02d", now.getHour()));
-                str = str.replace("{MIN}",  String.format("%02d", now.getMinute()));
-                str = str.replace("{SEC}",  String.format("%02d", now.getSecond()));
+                str = str.replace("{YEAR}",  String.valueOf(now.getYear()));
+                str = str.replace("{MONTH}",  String.valueOf(now.getMonthValue()));
+                str = str.replace("{DAY}",  String.valueOf(now.getDayOfMonth()));
+                str = str.replace("{HOUR}",  String.valueOf(now.getHour()));
+                str = str.replace("{MIN}",  String.valueOf(now.getMinute()));
+                str = str.replace("{SEC}",  String.valueOf(now.getSecond()));
                 this.addLine(str);
             }
             catch (Exception e)
@@ -811,7 +810,7 @@ public class RenderHandler implements IRenderer
             if (clientChunk.isEmpty() == false)
             {
                 Biome biome = mc.world.getBiome(pos).value();
-                Identifier id = mc.world.getRegistryManager().get(RegistryKeys.BIOME).getId(biome);
+                Identifier id = mc.world.getRegistryManager().get(Registry.BIOME_KEY).getId(biome);
                 this.addLine("Biome: " + StringUtils.translate("biome." + id.toString().replace(":", ".")));
             }
         }
@@ -822,7 +821,7 @@ public class RenderHandler implements IRenderer
             if (clientChunk.isEmpty() == false)
             {
                 Biome biome = mc.world.getBiome(pos).value();
-                Identifier rl = mc.world.getRegistryManager().get(RegistryKeys.BIOME).getId(biome);
+                Identifier rl = mc.world.getRegistryManager().get(Registry.BIOME_KEY).getId(biome);
                 String name = rl != null ? rl.toString() : "?";
                 this.addLine("Biome reg name: " + name);
             }
@@ -999,7 +998,7 @@ public class RenderHandler implements IRenderer
         {
             BlockPos posLooking = ((BlockHitResult) mc.crosshairTarget).getBlockPos();
             BlockState state = mc.world.getBlockState(posLooking);
-            Identifier rl = Registries.BLOCK.getId(state.getBlock());
+            Identifier rl = Registry.BLOCK.getId(state.getBlock());
 
             this.addLine(rl != null ? rl.toString() : "<null>");
 
