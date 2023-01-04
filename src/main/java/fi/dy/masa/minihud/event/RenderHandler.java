@@ -754,7 +754,7 @@ public class RenderHandler implements IRenderer
                 double dx = entity.getX() - entity.lastRenderX;
                 double dy = entity.getY() - entity.lastRenderY;
                 double dz = entity.getZ() - entity.lastRenderZ;
-                this.addLine(String.format(Configs.Generic.SPEED_AXIS_FORMAT.getStringValue(), dx * 20, dy * 20, dz * 20));
+                this.addLine(String.format(Configs.Generic.SPEED_AXIS_FORMAT_STRING.getStringValue(), dx * 20, dy * 20, dz * 20));
             }
             catch (Exception e)
             {
