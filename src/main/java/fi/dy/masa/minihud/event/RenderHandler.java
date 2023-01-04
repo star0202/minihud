@@ -295,7 +295,13 @@ public class RenderHandler implements IRenderer
 
         if (type == InfoToggle.FPS)
         {
-            this.addLine(String.format("%d fps", this.fps));
+            try {
+                this.addLine(String.format(Configs.Generic.FPS_FORMAT_STRING.getStringValue(), this.fps));
+            }
+            catch (Exception e)
+            {
+                this.addLine("broken fps format string!");
+            }
         }
         else if (type == InfoToggle.MEMORY_USAGE)
         {
