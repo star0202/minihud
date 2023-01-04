@@ -14,14 +14,13 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.entity.Entity;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeAccess;
@@ -545,7 +544,7 @@ public class OverlayRendererBiomeBorders extends OverlayRendererBase
         }
         else
         {
-            final Registry<Biome> registry = world.getRegistryManager().get(RegistryKeys.BIOME);
+            final Registry<Biome> registry = world.getRegistryManager().get(Registry.BIOME_KEY);
             int count = 0;
             int maxId = 0;
 
